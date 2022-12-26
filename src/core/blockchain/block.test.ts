@@ -1,3 +1,4 @@
+import { Chain } from '@core/blockchain/chain';
 import { Block } from "@core/blockchain/block";
 import { GENESIS } from "@core/config";
 
@@ -7,7 +8,10 @@ describe("Block 검증", () => {
     it("블록 생성 테스트", () => {
         const data = ["Block #2"];
 
-        newBlock = Block.generateBlock(GENESIS, data);
+        const chain = new Chain();
+        const adjustmentBlock = chain.getAdjustmentBlock()
+
+        newBlock = Block.generateBlock(GENESIS, data, adjustmentBlock);
 
         console.log(newBlock)
     })
